@@ -1,0 +1,43 @@
+{
+  "request": {
+    "filePath": "@/services",
+    "methodName": "uRequest",
+    "default": true
+  },
+  "outputDir": "./services",
+  "handleUnknown": "generic",
+  "origins": [
+    {
+      "origin": "http://jz-user.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "User"
+    },
+    {
+      "origin": "http://jz-organization.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "Organization"
+    },
+    {
+      "origin": "http://jz-foundation.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "Foundation"
+    },
+    {
+      "origin": "http://jz-kms.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "Kms"
+    },
+    {
+      "origin": "http://jz-fileserver.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "FileServer"
+    },
+    {
+      "origin": "http://jz-message.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "Message"
+    },
+    {
+      "origin": "http://jz-verifiablecredential.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "VC"
+    },
+    {
+      "origin": "http://jz-hublink.service.consul:30380/api/v1/v2/api-docs",
+      "originName": "HubLink"
+    }
+  ]
+}

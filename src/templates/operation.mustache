@@ -1,0 +1,18 @@
+import {{^default}}{ {{/default}}{{methodName}}{{^default}} }{{/default}} from "{{&filePath}}";
+
+import Inter = API.{{originName}}.{{name}};
+
+{{&description}}export function {{name}}(
+  {{#path}}path: Inter.Path,{{/path}}
+  {{#query}}query: Inter.Query,{{/query}}
+  {{#body}}body: Inter.Body,{{/body}}
+): Promise<Inter.Response> {
+  return {{methodName}}<Inter.Response>(
+    {{&fullPath}},
+    {
+      method: '{{operation}}',
+      {{#query}}params: query,{{/query}}
+      {{#body}}data: body,{{/body}}
+    }
+  );
+}

@@ -1,0 +1,19 @@
+declare namespace API {
+
+{{#origins}}
+  namespace {{&name}} {
+    {{#definitions}}
+      {{&interface}}
+    {{/definitions}}
+
+    {{#endpoints}}
+      {{&description}}namespace {{&name}} {
+        {{&path}}
+        {{&query}}
+        {{&body}}
+        {{&response}}
+      }
+    {{/endpoints}}
+  }
+{{/origins}}
+}

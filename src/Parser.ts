@@ -236,13 +236,9 @@ class Parser {
           name: param.name,
           description: param.description,
           required: paramIn === 'path' || Boolean(param.required),
-          type: this.parseSchema({
-            type: param.type,
-            items: param.items,
-          })
+          type: this.parseSchema(param as OpenAPIV2.SchemaObject)
         })
       }
-
     }
 
     return result;

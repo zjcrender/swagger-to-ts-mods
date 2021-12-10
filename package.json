@@ -2,7 +2,7 @@
   "name": "swagger-to-ts-mods",
   "author": "render",
   "description": "parse swagger document into typescript definitions and api methods",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/bin/index.js",
   "license": "MIT",
   "bin": {
@@ -45,5 +45,6 @@
     "api",
     "modules",
     "mods"
-  ]
+  ],
+  "files": ["lib", "README.MD"]
 }

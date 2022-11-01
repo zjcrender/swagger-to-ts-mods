@@ -54,7 +54,9 @@ export class CodeGenerator {
     props.forEach(prop => {
       const { name, required, description, type } = prop;
       const requiredFlag = required ? '' : '?';
-      output += `${ this.makeComment(description) }${ name }${ requiredFlag }: ${ this.makeModalType(type) }\n`;
+      const reg = /^\w+$/
+      const transformName = reg.test(name) ? name : "'" + name + "'"
+      output += `${ this.makeComment(description) }${ transformName }${ requiredFlag }: ${ this.makeModalType(type) }\n`;
     })
 
     output += '}';

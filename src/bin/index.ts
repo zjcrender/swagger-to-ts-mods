@@ -1,40 +1,37 @@
-#!/usr/bin/env node
+import * as path from "node:path";
+import * as process from "node:process";
+import cac from 'cac';
+import { setup, generate } from '../command';
 
-import chalk from 'chalk';
-import { program } from 'commander';
-import setup from '../commands/setup';
-import generate from "../commands/generate";
+const cli = cac('o2t');
 
-const figlet = require('figlet');
+cli
+  .version(require('../../package.json').version)
+  .usage('[command] [options]')
+  .example('o2t setup -o ./o2t.json')
+  .example('o2t generate -c ./o2t.json');
 
-async function run() {
-  // console.log(chalk.green(figlet.textSync('SWAGGER TO TS TYPES')));
+cli
+  .command('setup', 'Setup openapi-to-typescript')
+  .option(
+    '-o, --output [output]',
+    'Output path',
+    { default: path.join(process.cwd(), 'o2t.json') }
+  )
+  .action(setup);
 
-  program
-    .version(require('../../package.json').version)
-    .name('s2t')
-    .usage('[命令] [配置项]')
-    .description('根据swagger文档生成typescript类型声明文件，及api调用函数')
+cli
+  .command('generate', 'Generate types and api files')
+  .alias('g')
+  .usage('generate|g')
+  .example('o2t g -c /path/to/configFile.json')
+  .option(
+    '-c, --config [config]',
+    'config file path',
+    { default: path.join(process.cwd(), 'o2t.json') }
+  )
+  .action(generate);
 
-  program
-    .command('setup')
-    .description('生成配置文件')
-    .argument('[outputPath]', '配置文件保存地址')
-    .action(setup);
-
-  program
-    .command('generate')
-    .alias('g')
-    .description('根据配置文件生成接口类型文件')
-    .argument('[configPath]', '配置文件地址')
-    .action(generate);
-
-  await program.parseAsync(process.argv);
-
-  process.exit(0);
-}
-
-run().catch(error => {
-  console.log(chalk.red(error));
-  process.exit(1);
-})
+cli
+  .help()
+  .parse()
